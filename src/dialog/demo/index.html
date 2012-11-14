@@ -1,0 +1,71 @@
+<html ng-app=DialogDemo>
+	<head>
+		<title>$dialogProvider demo</title>
+		<link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet">
+		<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.1/angular.min.js"></script>
+		<script src="../../transition/transition.js"></script>
+		<script src="../dialog.js"></script>
+		<script src="../../../template/dialog/message.html.js"></script>
+		<script src="app.js"></script>
+	</head>
+	<body ng-controller=DialogController class="container">
+		<header class=page-header>
+			<h1>Dialog demo</h1>
+		</header>
+		<div class=row>
+			<div class="well span4">
+				<fieldset>
+					<legend>Dialog Options</legend>
+					<p>
+						Change options at will and press button below
+					</p>
+					<label class="checkbox">
+						<input type=checkbox ng-model="dialogOptions.backdrop">
+						Show backdrop
+					</label>
+					<label class="checkbox">
+						<input type=checkbox ng-model="dialogOptions.modalFade">
+						Fade modal dialog
+					</label>
+					<label class="checkbox">
+						<input type=checkbox ng-disabled="!dialogOptions.backdrop" ng-model="dialogOptions.backdropFade">
+						Fade Backdrop
+					</label>
+					<hr>
+					<label class="checkbox">
+						<input type=checkbox ng-model="dialogOptions.keyboard">
+						Close on Escape
+					</label>
+					<label class="checkbox">
+						<input type=checkbox ng-disabled="!dialogOptions.backdrop" ng-model="dialogOptions.backdropClick">
+						Close on backdrop click
+					</label>
+				</fieldset>
+				<button class="pull-right btn btn-primary btn-large" ng-click="open()">Open Dialog</button>
+			</div>
+			<div class="well span5">
+				<fieldset>
+					<legend>Message Box</legend>
+					<div class=form-horizontal>
+						<div class="control-group">
+							<label class="control-label" for="inputEmail">Title</label>
+							<div class="controls">
+								<input type="text" ng-model=msgbox.title>
+							</div>
+						</div>
+					</div>
+					<div class=form-horizontal>
+						<div class="control-group">
+							<label class="control-label" for="inputEmail">Message</label>
+							<div class="controls">
+								<input type="text" ng-model=msgbox.message>
+							</div>
+						</div>
+					</div>
+				</fieldset>
+				<button class="pull-right btn btn-primary btn-large" ng-click="messageBox()">Open Message Box</button>
+			</div>
+		</div>
+		
+	</body>
+</html>
