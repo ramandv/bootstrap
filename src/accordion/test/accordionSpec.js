@@ -132,7 +132,6 @@ describe('accordion', function () {
       it('should change selected element on click', function () {
         findGroupLink(0).click();
         scope.$digest();
-        dump(findGroupBody(0).scope());
         expect(findGroupBody(0).scope().isOpen).toBe(true);
 
         findGroupLink(1).click();
