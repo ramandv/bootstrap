@@ -2,6 +2,7 @@ describe('accordion', function () {
   var $scope;
 
   beforeEach(module('ui.bootstrap.accordion'));
+  beforeEach(module('template/accordion/accordion.html'));
   beforeEach(module('template/accordion/accordion-group.html'));
 
   beforeEach(inject(function ($rootScope) {
@@ -12,16 +13,9 @@ describe('accordion', function () {
 
     var ctrl, $element, $attrs;
     beforeEach(inject(function($controller) {
-      $element = jasmine.createSpyObj('$element', ['addClass']);
-      $attrs = {};
+      $attrs = {}, $element = {};
       ctrl = $controller('AccordionController', { $scope: $scope, $element: $element, $attrs: $attrs });
     }));
-
-    describe('CSS class', function() {
-      it('should add accordion CSS class to the element', function() {
-        expect($element.addClass).toHaveBeenCalledWith('accordion');
-      });
-    });
 
     describe('addGroup', function() {
       it('adds a the specified group to the collection', function() {
