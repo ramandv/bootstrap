@@ -1,0 +1,4 @@
+<div class='container-fluid' ng-controller="TypeaheadCtrl">
+    <pre>Model: {{result | json}}</pre>
+    <input ng-model="result" typeahead-source="states" typeahead-items="10">
+</div>
