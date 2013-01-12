@@ -138,7 +138,7 @@ describe('pagination directive with max size option', function () {
     expect(element.find('li').eq(-1).text()).toBe('Next');
   });
 
-  it('shows the page number even if it cant shown in the middle', function() {
+  it('shows the page number even if it can\'t be shown in the middle', function() {
     $rootScope.currentPage = 1;
     $rootScope.$digest();
     var currentPageItem = element.find('li').eq(1);
@@ -163,13 +163,26 @@ describe('pagination directive with max size option', function () {
   
   it('shows the page number in middle after the prev link is clicked', function() {
     $rootScope.currentPage = 7;
-    $rootScope.$digest();      
+    $rootScope.$digest();
     var prev = element.find('li').eq(0).find('a').eq(0);
     prev.click();
     expect($rootScope.currentPage).toBe(6);
     var currentPageItem = element.find('li').eq(3);
     expect(currentPageItem.hasClass('active')).toBe(true);
     expect(parseInt(currentPageItem.text(), 10)).toBe($rootScope.currentPage);
+  });
+  
+  it('changes pagination bar size when max-size value changed', function() {
+    $rootScope.maxSize = 7;
+    $rootScope.$digest();
+    expect(element.find('li').length).toBe(9);
+  });  
+
+  it('sets the pagination bar size to num-pages, if max-size is greater than num-pages ', function() {
+    $rootScope.maxSize = 15;
+    $rootScope.$digest();
+    expect(element.find('li').length).toBe(12);
+    expect($rootScope.maxSize).toBe(10);
   });
 
 });  

@@ -12,9 +12,13 @@ angular.module('ui.bootstrap.pagination', [])
     templateUrl: 'template/pagination/pagination.html',
     replace: true,
     link: function(scope) {
-      scope.$watch('numPages + currentPage', function() {
+      scope.$watch('numPages + currentPage + maxSize', function() {
         scope.pages = [];
         
+        if(angular.isDefined(scope.maxSize) && scope.maxSize > scope.numPages) {
+            scope.maxSize = scope.numPages;
+        }
+
         //set the default maxSize to numPages
         var maxSize = scope.maxSize ? scope.maxSize : scope.numPages;
         var startPage = scope.currentPage - Math.floor(maxSize/2);        
