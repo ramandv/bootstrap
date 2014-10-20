@@ -12,7 +12,7 @@ describe('collapse directive', function () {
   }));
 
   beforeEach(function() {
-    element = $compile('<div collapse="isCollapsed">Some Content</div>')(scope);
+    element = $compile('<div collapse="isCollapsed" ng-hide="hideContent">Some Content</div>')(scope);
     angular.element(document.body).append(element);
   });
 
@@ -70,6 +70,20 @@ describe('collapse directive', function () {
       expect(element.height()).toBe(0);
     }
   });
+
+  it('should also set height:auto on isCollapsed = false, even if there is no content', function() {
+    scope.hideContent = true;
+    scope.isCollapsed = true;
+    scope.$digest();
+    expect(element.height()).toBe(0);
+    scope.isCollapsed = false;
+    scope.$digest();
+    expect(element.height()).toBe(0);
+    scope.hideContent = false;
+    scope.$digest();
+    expect(element.height()).toBeGreaterThan(0);
+  });
+
 
   describe('dynamic content', function() {
 

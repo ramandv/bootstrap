@@ -31,7 +31,12 @@ angular.module('ui.bootstrap.collapse', ['ui.bootstrap.transition'])
             expandDone();
           } else {
             element.removeClass('collapse').addClass('collapsing');
-            doTransition({ height: element[0].scrollHeight + 'px' }).then(expandDone);
+            if(element[0].scrollHeight === 0) {
+              expandDone();
+            }
+            else {
+              doTransition({ height: element[0].scrollHeight + 'px' }).then(expandDone);
+            }
           }
         }
 
